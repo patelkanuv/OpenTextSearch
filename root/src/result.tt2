@@ -1,0 +1,131 @@
+<html>
+    <head>
+        <title>Result Page</title>
+        <link rel="stylesheet" href="/static/js/jquery/themes/base/jquery-ui.css">
+        <script src="/static/js/jquery/jquery-1.9.1.js"></script>
+        <script src="/static/js/jquery/ui/jquery-ui.js"></script>
+        <script src="/static/js/OpenTextSearch.js"></script>
+        <style>
+            html {
+                font : 12px/16.1px Tahoma,Verdana,Arial
+            }
+            .pname {
+                text-align: center;
+                width     : 100px;
+                font : bold 12px/16.1px Tahoma,Verdana,Arial
+            }
+            .hname {
+                text-align: left;
+                font : bold 12px/16.1px Tahoma,Verdana,Arial;
+                color: #0055cd;
+            }
+            
+            .vname {
+                text-align: left;
+                width     : 200px;
+                font : 12px/16.1px Tahoma,Verdana,Arial
+            }
+            
+            .cValidation {
+                display:none;
+                text-align: left; 
+                width: 465px;
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+            <span><h3>Tell me about your trip!!</h3></span>
+            <form name="NLSearch" action="/air/search" method="post" >
+                <textarea id="search_text" name="search_text" type="textarea" value="" Cols="50" rows="2"></textarea>
+                <br/>
+                <input name="submit"    type="submit"   value="Search"/>
+            </form>
+            
+            <div id="ContValidation" style="display:block">
+                <div id="location" class="cValidation"><b>Where would you like to travel?</b> e.g Paris, London, Toronto, Las Vegas etc.</div>
+                <div id="dates" class="cValidation"><b>When would you like to travel?</b> eg. 25th March, return on 1st april</div>
+                <div id="passenger" class="cValidation"><b>Who will be travelling?</b> eg. 2 adults, 1 child</div>
+                <div id="trip_details" class="cValidation"><b>What else do you need?</b> eg. OneWay or RoundTrip, Economy or Business class.</div>
+            </div
+            <br/>
+            <br/>
+            [% IF search_text %]
+                <span>You Searched :- [% search_text %] </span><br/><br/>
+            [% END %]
+            [% IF result.success == "true" %]
+                <table border="1">
+                    <tr>
+                        <td class="hname">Param Name</td>
+                        <td class="hname">Value</td>
+                    </tr>
+                    <tr>
+                        <td class="pname">From</td>
+                        <td class="vname">
+                            [% FOREACH airport IN result.query.from_airport %]
+                                <span> [% airport.city_name %] , [% airport.airport_code %] </span>
+                                <br/>
+                            [% END %]
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pname">To</td>
+                        <td class="vname">
+                            [% FOREACH airport IN result.query.to_airport %]
+                                <span> [% airport.city_name %] , [% airport.airport_code %] </span>
+                                <br/>
+                            [% END %]
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pname">Depart Date</td>
+                        <td class="vname">
+                            <span> [% result.query.depart_date %] </span>
+                        </td>
+                    </tr>
+                    [% IF result.query.trip_type != "OneWay" %]
+                    <tr>
+                        <td class="pname">Return Date</td>
+                        <td class="vname">
+                            <span> [% result.query.return_date %] </span>
+                        </td>
+                    </tr>
+                    [% END %]
+                    <tr>
+                        <td class="pname">Trip Type</td>
+                        <td class="vname">
+                            <span> [% result.query.trip_type %] </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pname">Trip Class</td>
+                        <td class="vname">
+                            <span> [% result.query.trip_class %] </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pname">Passengers</td>
+                        <td class="vname">
+                            <span> [% result.query.adult %] Adults</span> <br/>
+                            <span> [% result.query.child %] Children </span> <br/>
+                            <span> [% result.query.infant %] Infant</span>
+                        </td>
+                    </tr>
+                                 
+                </table>
+            [% ELSE %]
+                <table border="1">
+                    <tr>
+                        <td class="pname">Errors</td>
+                        <td class="vname">
+                            [% FOREACH error IN result.errors %]
+                                <span> [% error.msg %] </span>
+                                <br/>
+                            [% END %]
+                        </td>
+                    </tr>
+                </table>
+            [% END %]
+        </center>    
+    </body>
+</html>

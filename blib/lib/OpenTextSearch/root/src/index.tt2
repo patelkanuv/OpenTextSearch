@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>Index Page</title>
+    </head>
+    <body>
+        <h1>My First Page</h1>
+        <span>Tell Me what do want to Search?</span>
+        <form name="NLSearch" action="/air/search" method="post" >
+            <textarea name="search_text" type="textarea" value="" Cols="50" rows="2"></textarea>
+            <br/>
+            <input name="submit"    type="submit"   value="Search"/>
+        </form>
+    </body>
+</html>

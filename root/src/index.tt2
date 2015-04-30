@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Index Page</title>
+        <link rel="stylesheet" href="/static/js/jquery/themes/base/jquery-ui.css">
+        <script src="/static/js/jquery/jquery-1.9.1.js"></script>
+        <script src="/static/js/jquery/ui/jquery-ui.js"></script>
+        <script src="/static/js/OpenTextSearch.js"></script>
+        <style>
+            html {
+                font : 12px/16.1px Tahoma,Verdana,Arial
+            }
+            .cValidation {
+                display:none;
+                text-align: left; 
+                width: 465px;
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+            <span><h3>Tell me about your trip!!</h3></span>
+            <form name="NLSearch" action="/air/search" method="post" >
+                <textarea id="search_text"  name="search_text" type="textarea" value="" Cols="50" rows="2"></textarea>
+                <br/>
+                <input name="submit"    type="submit"   value="Search"/>
+            </form>
+            <div id="ContValidation" style="display:block">
+                <div id="location" class="cValidation"><b>Where would you like to travel?</b> e.g Paris, London, Toronto, Las Vegas etc.</div>
+                <div id="dates" class="cValidation"><b>When would you like to travel?</b> eg. 25th March, return on 1st april</div>
+                <div id="passenger" class="cValidation"><b>Who will be travelling?</b> eg. 2 adults, 1 child</div>
+                <div id="trip_details" class="cValidation"><b>What else do you need?</b> eg. OneWay or RoundTrip, Economy or Business class.</div>
+            </div
+        </center>
+    </body>
+</html>

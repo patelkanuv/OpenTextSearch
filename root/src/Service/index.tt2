@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Index Page</title>
+        <style>
+            html {
+                font : 12px/16.1px Tahoma,Verdana,Arial
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+            <span><h3>Tell me about your trip!!</h3></span>
+            <form name="NLSearch" action="/air/service/search" method="post" >
+                <input type='hidden' value='113.20.16.231' name='ip'>
+                <input type='hidden' value='f9d869cda22b431d4058097109e841bf' name='client_key'>
+                <textarea name="search_text" type="textarea" value="" Cols="50" rows="2"></textarea>
+                <br/>
+                <input name="submit" type="submit"   value="Search"/>
+            </form>
+        </center>
+    </body>
+</html>
