@@ -72,7 +72,7 @@ sub parse_search_string {
     
     my $tokens  = Travel::Air::Search::Tokens::Parser->new(
                 'data_str'  => $c->req->body_params->{ 'search_text' },
-                'IP'        => '113.20.16.231'
+                'IP'        => $ip
             );
 
     my $parsed_data = $tokens->parse_input;
