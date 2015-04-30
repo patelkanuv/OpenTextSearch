@@ -78,13 +78,13 @@ Search method initiates the parsing of string into logical travel information.
 sub search :Local {
     my ( $self, $c ) = @_;
 
-    my $id;
-    try {
-        $id = $c->model('DataTransaction')->add_client_search_stats($c);
-    }
-    catch{
-        print STDERR $_;
-    };
+    #my $id;
+    #try {
+    #    $id = $c->model('DataTransaction')->add_client_search_stats($c);
+    #}
+    #catch{
+    #    print STDERR $_;
+    #};
     
     try {
         $c->model('Air::Service')->parse_search_string($c);
@@ -93,9 +93,9 @@ sub search :Local {
         print STDERR $_;
     };
     
-    if($id) {
-        $c->model('DataTransaction')->update_access_record($c, $id, $c->stash->{'result'}{ 'success' });
-    }
+    #if($id) {
+    #    $c->model('DataTransaction')->update_access_record($c, $id, $c->stash->{'result'}{ 'success' });
+    #}
     
     $c->forward( $c->view('Service') );
     

@@ -64,13 +64,13 @@ Catalyst Controller.
 sub search :Local {
     my ( $self, $c ) = @_;
 
-    my $id;
-    try {
-        $id = $c->model('DataTransaction')->add_access_record($c);
-    }
-    catch{
-        print STDERR $_;
-    };
+    #my $id;
+    #try {
+    #    $id = $c->model('DataTransaction')->add_access_record($c);
+    #}
+    #catch{
+    #    print STDERR $_;
+    #};
     
     try {
         $c->model('Air::Search')->parse_search_string($c);
@@ -79,9 +79,9 @@ sub search :Local {
         print STDERR $_;
     };
     
-    if($id) {
-        $c->model('DataTransaction')->update_access_record($c, $id, $c->stash->{'result'}{ 'success' });
-    }
+    #if($id) {
+    #    $c->model('DataTransaction')->update_access_record($c, $id, $c->stash->{'result'}{ 'success' });
+    #}
     
     $c->stash(
         search_text => $c->req->body_params->{ 'search_text' },   
